@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AR Product Showcase</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+
+    <script src="script.js"></script>
+</head>
+
+<body>
+
+    <div id="status">Marker Not Found</div>
+
+    
+<a-scene
+    embedded
+    vr-mode-ui="enabled: false"
+    renderer="logarithmicDepthBuffer: true;"
+    arjs="sourceType: webcam; debugUIEnabled: true;">
+
+    <a-marker preset="hiro" emitevents="true">
+
+        <a-entity
+            gltf-model="url(models/RobotExpressive.glb)"
+            position="1.5 0 0"
+            scale="0.15 0.15 0.15">
+        </a-entity>
+
+        <a-box
+            id="growBox"
+            position="0 0.5 1"
+            color="orange"
+            class="clickable"
+            grow-on-click
+            animation="property: rotation; to: 0 360 0; loop: true; dur: 3000">
+        </a-box>
+
+        <a-sphere
+            id="colorBall"
+            position="0 0.5 0"
+            radius="0.3"
+            color="blue"
+            class="clickable"
+            animation="property: position; to: 0 1.5 0; dir: alternate; loop: true; dur: 2000">
+        </a-sphere>
+
+        <a-cylinder position="1 0.5 0" color="green"></a-cylinder>
+
+        <a-cone position="0 1.5 0" color="yellow"></a-cone>
+
+        <a-text
+            value="AR Product Showcase"
+            position="-1 2 0"
+            color="white">
+        </a-text>
+
+    </a-marker>
+
+    <a-entity camera>
+        <a-cursor
+            raycaster="objects: .clickable"
+            cursor="rayOrigin: mouse; fuse: false">
+        </a-cursor>
+    </a-entity>
+
+</a-scene>
+
+
+</body>
+</html>
